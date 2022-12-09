@@ -18,11 +18,10 @@ namespace Lab3.FileManager
 
         private void LoadFoldersTreeView(TreeView foldersTreeView)
         {
-            string[] allDrives = Directory.GetLogicalDrives();
+            string[] allDrives = FileSystem.ListDrives();
             foreach (string drive in allDrives)
             {
-                string driveName = drive.Replace("\\", String.Empty);
-                TreeNode driveNode = foldersTreeView.Nodes.Add(driveName);
+                TreeNode driveNode = foldersTreeView.Nodes.Add(drive);
                 AddSubfolders(driveNode);
             }
         }
@@ -30,27 +29,11 @@ namespace Lab3.FileManager
         private void AddSubfolders(TreeNode folderNode)
         {
             folderNode.Nodes.Clear();
-
-            string fullPath = EnsureEndsWithDirectorySeparator(folderNode.FullPath);
-            string[] subfolders;
-            try
-            {
-                subfolders = Directory.GetDirectories(fullPath);
-            } catch (UnauthorizedAccessException)
-            {
-                subfolders = new string[] { };
-            }
+            string[] subfolders = FileSystem.ListDirectories(folderNode.FullPath);
             foreach (string subfolder in subfolders)
             {
-                folderNode.Nodes.Add(Path.GetFileName(subfolder));
+                folderNode.Nodes.Add(subfolder);
             }
-        }
-
-        private string EnsureEndsWithDirectorySeparator(string path)
-        {
-            if (Path.EndsInDirectorySeparator(path))
-                return path;
-            return path + Path.DirectorySeparatorChar;
         }
 
         private void FoldersDreeView_BeforeExpand(object? sender, TreeViewCancelEventArgs e)
