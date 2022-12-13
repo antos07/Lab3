@@ -4,6 +4,8 @@ namespace Lab3.FileManager
 {
     public partial class FileManagerForm : Form
     {
+        private int? _lastLeftLeftFilesListIndex, _lastRightFilesListIndex;
+
         public FileManagerForm()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace Lab3.FileManager
             try
             {
                 leftFoldersTreeView.SelectedNode = leftFoldersTreeView.Nodes[0];
-                rightFoldersTreeView.SelectedNode= rightFoldersTreeView.Nodes[0];
+                rightFoldersTreeView.SelectedNode = rightFoldersTreeView.Nodes[0];
             }
             catch (IndexOutOfRangeException) { }
 
@@ -112,6 +114,37 @@ namespace Lab3.FileManager
         private void rightFilesTypeSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayFiles(rightFoldersTreeView.SelectedNode, rightFilesList, rightFilesTypeSelector);
+        }
+
+        private void ClearFilesSelections()
+        {
+            leftFilesList.ClearSelected();
+            rightFilesList.ClearSelected();
+        }
+
+        private void rightFilesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rightFilesList.SelectedIndex == _lastRightFilesListIndex)
+            {
+                rightFilesList.ClearSelected();
+                _lastRightFilesListIndex = null;
+            }
+            {
+                _lastRightFilesListIndex = rightFilesList.SelectedIndex;
+            }
+        }
+
+        private void leftFilesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (leftFilesList.SelectedIndex == _lastLeftLeftFilesListIndex)
+            {
+                leftFilesList.ClearSelected();
+                _lastLeftLeftFilesListIndex = null;
+            }
+            else
+            {
+                _lastLeftLeftFilesListIndex = leftFilesList.SelectedIndex;
+            }
         }
     }
 }

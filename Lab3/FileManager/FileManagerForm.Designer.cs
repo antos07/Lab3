@@ -124,6 +124,7 @@
             this.leftFilesList.Name = "leftFilesList";
             this.leftFilesList.Size = new System.Drawing.Size(739, 775);
             this.leftFilesList.TabIndex = 0;
+            this.leftFilesList.SelectedIndexChanged += new System.EventHandler(this.leftFilesList_SelectedIndexChanged);
             // 
             // leftFilesTreeViewControlsPannel
             // 
@@ -197,6 +198,7 @@
             this.rightFilesList.Name = "rightFilesList";
             this.rightFilesList.Size = new System.Drawing.Size(734, 775);
             this.rightFilesList.TabIndex = 0;
+            this.rightFilesList.SelectedIndexChanged += new System.EventHandler(this.rightFilesList_SelectedIndexChanged);
             // 
             // rightFilesTreeViewControlsPannel
             // 
