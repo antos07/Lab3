@@ -54,6 +54,35 @@ namespace Lab3.FileManager
             }
         }
 
+        public static FolderInfo GetFolderInfo(string path)
+        {
+            var directoryInfo = new DirectoryInfo(EnsureEndsWithDirectorySeparator(path));
+            if (!directoryInfo.Exists)
+                throw new DirectoryNotFoundException();
+
+            return new FolderInfo(directoryInfo.Name, directoryInfo.FullName, directoryInfo.CreationTime);
+        }
+
+        public static void MoveFolder(string oldPath, string newPath)
+        {
+            oldPath = EnsureEndsWithDirectorySeparator(oldPath);
+            newPath = EnsureEndsWithDirectorySeparator(newPath);
+            Directory.Move(oldPath, newPath);
+        }
+
+        public static void DeleteFolder(string path)
+        {
+            Directory.Delete(EnsureEndsWithDirectorySeparator(path), true);
+        }
+
+        public static string? GetParentDirectory(string path)
+        {
+            DirectoryInfo? parent = Directory.GetParent(path.TrimEnd(Path.DirectorySeparatorChar));
+            if (parent == null)
+                return null;
+            return parent.FullName;
+        }
+
         private static string EnsureEndsWithDirectorySeparator(string path)
         {
             if (Path.EndsInDirectorySeparator(path))
