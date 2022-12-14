@@ -56,6 +56,7 @@
             this.rightFilesTypeSelectorLabel = new System.Windows.Forms.Label();
             this.rightFilesTypeSelector = new System.Windows.Forms.ComboBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.filesTreeViewsContainer)).BeginInit();
             this.filesTreeViewsContainer.Panel1.SuspendLayout();
             this.filesTreeViewsContainer.Panel2.SuspendLayout();
@@ -70,13 +71,14 @@
             this.rightFilesTreeViewContainer.Panel2.SuspendLayout();
             this.rightFilesTreeViewContainer.SuspendLayout();
             this.rightFilesTreeViewControlsPannel.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // filesTreeViewsContainer
             // 
             this.filesTreeViewsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.filesTreeViewsContainer.IsSplitterFixed = true;
-            this.filesTreeViewsContainer.Location = new System.Drawing.Point(0, 24);
+            this.filesTreeViewsContainer.Location = new System.Drawing.Point(0, 52);
             this.filesTreeViewsContainer.Name = "filesTreeViewsContainer";
             // 
             // filesTreeViewsContainer.Panel1
@@ -88,7 +90,7 @@
             // 
             this.filesTreeViewsContainer.Panel2.Controls.Add(this.rightFilesTreeViewContainer);
             this.filesTreeViewsContainer.Panel2.Controls.Add(this.rightFilesTreeViewControlsPannel);
-            this.filesTreeViewsContainer.Size = new System.Drawing.Size(2384, 1110);
+            this.filesTreeViewsContainer.Size = new System.Drawing.Size(2384, 1082);
             this.filesTreeViewsContainer.SplitterDistance = 1192;
             this.filesTreeViewsContainer.TabIndex = 1;
             // 
@@ -106,7 +108,7 @@
             // leftFilesTreeViewContainer.Panel2
             // 
             this.leftFilesTreeViewContainer.Panel2.Controls.Add(this.leftFilesList);
-            this.leftFilesTreeViewContainer.Size = new System.Drawing.Size(1192, 876);
+            this.leftFilesTreeViewContainer.Size = new System.Drawing.Size(1192, 848);
             this.leftFilesTreeViewContainer.SplitterDistance = 449;
             this.leftFilesTreeViewContainer.TabIndex = 1;
             // 
@@ -117,7 +119,7 @@
             this.leftFoldersTreeView.HideSelection = false;
             this.leftFoldersTreeView.Location = new System.Drawing.Point(0, 0);
             this.leftFoldersTreeView.Name = "leftFoldersTreeView";
-            this.leftFoldersTreeView.Size = new System.Drawing.Size(449, 876);
+            this.leftFoldersTreeView.Size = new System.Drawing.Size(449, 848);
             this.leftFoldersTreeView.TabIndex = 0;
             this.leftFoldersTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.leftFoldersTreeView_AfterSelect);
             // 
@@ -129,7 +131,7 @@
             this.leftFilesList.ItemHeight = 41;
             this.leftFilesList.Location = new System.Drawing.Point(0, 0);
             this.leftFilesList.Name = "leftFilesList";
-            this.leftFilesList.Size = new System.Drawing.Size(739, 876);
+            this.leftFilesList.Size = new System.Drawing.Size(739, 848);
             this.leftFilesList.TabIndex = 0;
             this.leftFilesList.SelectedIndexChanged += new System.EventHandler(this.leftFilesList_SelectedIndexChanged);
             // 
@@ -146,7 +148,7 @@
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFilesTypeSelectorLabel);
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFilesTypeSelector);
             this.leftFilesTreeViewControlsPannel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.leftFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 876);
+            this.leftFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 848);
             this.leftFilesTreeViewControlsPannel.Name = "leftFilesTreeViewControlsPannel";
             this.leftFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1192, 234);
             this.leftFilesTreeViewControlsPannel.TabIndex = 0;
@@ -193,12 +195,14 @@
             // 
             // leftMergeFilesButton
             // 
+            this.leftMergeFilesButton.Enabled = false;
             this.leftMergeFilesButton.Location = new System.Drawing.Point(576, 166);
             this.leftMergeFilesButton.Name = "leftMergeFilesButton";
             this.leftMergeFilesButton.Size = new System.Drawing.Size(590, 49);
             this.leftMergeFilesButton.TabIndex = 2;
             this.leftMergeFilesButton.Text = "Злити з правим файлом";
             this.leftMergeFilesButton.UseVisualStyleBackColor = true;
+            this.leftMergeFilesButton.Click += new System.EventHandler(this.leftMergeFilesButton_Click);
             // 
             // leftSearchButton
             // 
@@ -256,7 +260,7 @@
             // rightFilesTreeViewContainer.Panel2
             // 
             this.rightFilesTreeViewContainer.Panel2.Controls.Add(this.rightFilesList);
-            this.rightFilesTreeViewContainer.Size = new System.Drawing.Size(1188, 876);
+            this.rightFilesTreeViewContainer.Size = new System.Drawing.Size(1188, 848);
             this.rightFilesTreeViewContainer.SplitterDistance = 450;
             this.rightFilesTreeViewContainer.TabIndex = 1;
             // 
@@ -267,7 +271,7 @@
             this.rightFoldersTreeView.HideSelection = false;
             this.rightFoldersTreeView.Location = new System.Drawing.Point(0, 0);
             this.rightFoldersTreeView.Name = "rightFoldersTreeView";
-            this.rightFoldersTreeView.Size = new System.Drawing.Size(450, 876);
+            this.rightFoldersTreeView.Size = new System.Drawing.Size(450, 848);
             this.rightFoldersTreeView.TabIndex = 0;
             this.rightFoldersTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.rightFoldersTreeView_AfterSelect);
             // 
@@ -279,7 +283,7 @@
             this.rightFilesList.ItemHeight = 41;
             this.rightFilesList.Location = new System.Drawing.Point(0, 0);
             this.rightFilesList.Name = "rightFilesList";
-            this.rightFilesList.Size = new System.Drawing.Size(734, 876);
+            this.rightFilesList.Size = new System.Drawing.Size(734, 848);
             this.rightFilesList.TabIndex = 0;
             this.rightFilesList.SelectedIndexChanged += new System.EventHandler(this.rightFilesList_SelectedIndexChanged);
             // 
@@ -295,7 +299,7 @@
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFilesTypeSelectorLabel);
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFilesTypeSelector);
             this.rightFilesTreeViewControlsPannel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rightFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 876);
+            this.rightFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 848);
             this.rightFilesTreeViewControlsPannel.Name = "rightFilesTreeViewControlsPannel";
             this.rightFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1188, 234);
             this.rightFilesTreeViewControlsPannel.TabIndex = 0;
@@ -342,6 +346,7 @@
             // 
             // rightMergeFilesButton
             // 
+            this.rightMergeFilesButton.Enabled = false;
             this.rightMergeFilesButton.Location = new System.Drawing.Point(570, 166);
             this.rightMergeFilesButton.Name = "rightMergeFilesButton";
             this.rightMergeFilesButton.Size = new System.Drawing.Size(590, 49);
@@ -394,11 +399,20 @@
             // menuStrip
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(2384, 24);
+            this.menuStrip.Size = new System.Drawing.Size(2384, 52);
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip1";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(198, 48);
+            this.aboutToolStripMenuItem.Text = "О програмі";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // FileManagerForm
             // 
@@ -426,6 +440,8 @@
             this.rightFilesTreeViewContainer.ResumeLayout(false);
             this.rightFilesTreeViewControlsPannel.ResumeLayout(false);
             this.rightFilesTreeViewControlsPannel.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,5 +476,6 @@
         private Button rightCreateFileButton;
         private Button rightOpenEditorButton;
         private Button rightMergeFilesButton;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

@@ -1,6 +1,8 @@
 using Lab3.Editor;
+using Lab3.FilesMerger;
 using Lab3.FileSystem;
 using Lab3.Search;
+using System.Data;
 using File = Lab3.FileSystem.File;
 
 namespace Lab3.FileManager
@@ -471,6 +473,41 @@ namespace Lab3.FileManager
         private void rightOpenEditorButton_Click(object sender, EventArgs e)
         {
             OpenFileEditor(rightFoldersTreeView, rightFilesList, rightFilesTypeSelector);
+        }
+
+        private void leftMergeFilesButton_Click(object sender, EventArgs e)
+        {
+            if (leftFilesList.SelectedItem == null || rightFilesList.SelectedItem == null)
+            {
+                DisplayError("Оберіть файли");
+                return;
+            }
+
+            string leftFolderPath = leftFoldersTreeView.SelectedNode.FullPath;
+            string leftFilePath = Path.Combine(leftFolderPath, (string)leftFilesList.SelectedItem);
+
+            string rightFolderPath = rightFoldersTreeView.SelectedNode.FullPath;
+            string rightFilePath = Path.Combine(leftFolderPath, (string)rightFilesList.SelectedItem);
+
+            File left, right;
+            try
+            {
+                left = new File(leftFilePath);
+                right = new File(rightFilePath);
+                Merger.Merge(left, right);
+            }
+            catch
+            {
+                DisplayError("Не вдалось об'єднати файли.");
+
+                ReloadFilesList(leftFoldersTreeView, leftFilesList, leftFilesTypeSelector);
+                ReloadFilesList(rightFoldersTreeView, rightFilesList, rightFilesTypeSelector);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Троценко Антон К-27, Варіант 25");
         }
 
         private void DisplayError(string errorText)
