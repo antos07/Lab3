@@ -189,6 +189,7 @@
             this.leftOpenEdittorButton.TabIndex = 2;
             this.leftOpenEdittorButton.Text = "Відкрити редактор";
             this.leftOpenEdittorButton.UseVisualStyleBackColor = true;
+            this.leftOpenEdittorButton.Click += new System.EventHandler(this.leftOpenEdittorButton_Click);
             // 
             // leftMergeFilesButton
             // 
@@ -337,6 +338,7 @@
             this.rightOpenEditorButton.TabIndex = 2;
             this.rightOpenEditorButton.Text = "Відкрити редактор";
             this.rightOpenEditorButton.UseVisualStyleBackColor = true;
+            this.rightOpenEditorButton.Click += new System.EventHandler(this.rightOpenEditorButton_Click);
             // 
             // rightMergeFilesButton
             // 

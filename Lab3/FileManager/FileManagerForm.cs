@@ -1,3 +1,4 @@
+using Lab3.Editor;
 using Lab3.FileSystem;
 using Lab3.Search;
 using File = Lab3.FileSystem.File;
@@ -428,6 +429,48 @@ namespace Lab3.FileManager
 
             using var searchForm = new SearchForm(new Search.Search(folder));
             searchForm.ShowDialog(this);
+        }
+
+        private void leftOpenEdittorButton_Click(object sender, EventArgs e)
+        {
+            OpenFileEditor(leftFoldersTreeView, leftFilesList, leftFilesTypeSelector);
+        }
+
+        private void OpenFileEditor(TreeView foldersTreeView, ListBox filesListView, ComboBox filesTypeSelector)
+        {
+            if (filesListView.SelectedItem == null)
+            {
+                DisplayError("ќбер≥ть файл.");
+                return;
+            }
+
+            string folderPath = foldersTreeView.SelectedNode.FullPath;
+            string filePath = Path.Combine(folderPath, (string)filesListView.SelectedItem);
+
+            File file;
+            try
+            {
+                file = new File(filePath);
+            }
+            catch (FileNotFoundException)
+            {
+                DisplayError("‘айл не знайдено.");
+                ReloadFilesList(foldersTreeView, filesListView, filesTypeSelector);
+                return;
+            }
+            catch
+            {
+                DisplayError("ўось п≥шло не так.");
+                return;
+            }
+
+            using var editorForm = new EditorForm(file);
+            editorForm.ShowDialog(this);
+        }
+
+        private void rightOpenEditorButton_Click(object sender, EventArgs e)
+        {
+            OpenFileEditor(rightFoldersTreeView, rightFilesList, rightFilesTypeSelector);
         }
 
         private void DisplayError(string errorText)
