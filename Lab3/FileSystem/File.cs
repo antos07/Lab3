@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3.FileManager.Components
+namespace Lab3.FileSystem
 {
     public class File : Entity
     {

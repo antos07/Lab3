@@ -1,6 +1,4 @@
-﻿using Lab3.FileManager.Components;
-
-namespace Lab3.FileManager
+﻿namespace Lab3.FileSystem
 {
     internal static class FileSystem
     {

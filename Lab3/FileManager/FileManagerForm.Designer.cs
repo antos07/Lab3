@@ -207,6 +207,7 @@
             this.leftSearchButton.TabIndex = 2;
             this.leftSearchButton.Text = "Відкрити пошук";
             this.leftSearchButton.UseVisualStyleBackColor = true;
+            this.leftSearchButton.Click += new System.EventHandler(this.leftSearchButton_Click);
             // 
             // leftFolderInfoButton
             // 
@@ -354,6 +355,7 @@
             this.rightSearchButton.TabIndex = 2;
             this.rightSearchButton.Text = "Відкрити пошук";
             this.rightSearchButton.UseVisualStyleBackColor = true;
+            this.rightSearchButton.Click += new System.EventHandler(this.rightSearchButton_Click);
             // 
             // rightFolderInfoButton
             // 

@@ -1,5 +1,5 @@
-using Lab3.FileManager.Components;
-using File = Lab3.FileManager.Components.File;
+using Lab3.FileSystem;
+using File = Lab3.FileSystem.File;
 
 namespace Lab3.FileManager
 {
@@ -389,6 +389,16 @@ namespace Lab3.FileManager
             {
                 LoadFoldersTreeView(foldersTreeView);
             }
+        }
+
+        private void leftSearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rightSearchButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void DisplayError(string errorText)

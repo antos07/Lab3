@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3.FileManager.Components
+namespace Lab3.FileSystem
 {
     public abstract class Entity
     {
@@ -16,7 +16,7 @@ namespace Lab3.FileManager.Components
         abstract public void Delete();
 
         protected string _name;
-        
+
         abstract protected void SetName(string value);
     }
 }

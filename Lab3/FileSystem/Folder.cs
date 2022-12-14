@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3.FileManager.Components
+namespace Lab3.FileSystem
 {
     public class Folder : Entity
     {
@@ -24,26 +24,32 @@ namespace Lab3.FileManager.Components
             CreationTime = directoryInfo.CreationTime;
         }
 
-        public IEnumerable<Folder> Subfolders { get
+        public IEnumerable<Folder> Subfolders
+        {
+            get
             {
                 string[] paths;
                 try
                 {
                     paths = Directory.GetDirectories(Path);
-                } 
+                }
                 catch (UnauthorizedAccessException)
                 {
                     yield break;
                 }
                 foreach (string path in paths)
                     yield return new Folder(path);
-            } }
+            }
+        }
 
 
-        public IEnumerable<File> Files { get
+        public IEnumerable<File> Files
+        {
+            get
             {
                 return SearchFiles("*");
-            } }
+            }
+        }
 
         public override void Delete()
         {
