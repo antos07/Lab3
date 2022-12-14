@@ -1,4 +1,5 @@
 using Lab3.FileSystem;
+using Lab3.Search;
 using File = Lab3.FileSystem.File;
 
 namespace Lab3.FileManager
@@ -28,7 +29,7 @@ namespace Lab3.FileManager
         {
             foldersTreeView.Nodes.Clear();
 
-            Folder[] allDrives = FileSystem.ListDrives();
+            Folder[] allDrives = FileSystem.FileSystem.ListDrives();
             foreach (Folder drive in allDrives)
             {
                 TreeNode driveNode = foldersTreeView.Nodes.Add(drive.Name.TrimEnd('\\'));
@@ -393,12 +394,40 @@ namespace Lab3.FileManager
 
         private void leftSearchButton_Click(object sender, EventArgs e)
         {
+            string path = leftFoldersTreeView.SelectedNode.FullPath;
+            Folder folder;
+            try
+            {
+                folder = new Folder(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                DisplayError("Папка була видалена або переміщена.");
+                LoadFoldersTreeView(leftFoldersTreeView);
+                return;
+            }
 
+            using var searchForm = new SearchForm(new Search.Search(folder));
+            searchForm.ShowDialog(this);
         }
 
         private void rightSearchButton_Click(object sender, EventArgs e)
         {
+            string path = rightFoldersTreeView.SelectedNode.FullPath;
+            Folder folder;
+            try
+            {
+                folder = new Folder(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                DisplayError("Папка була видалена або переміщена.");
+                LoadFoldersTreeView(rightFoldersTreeView);
+                return;
+            }
 
+            using var searchForm = new SearchForm(new Search.Search(folder));
+            searchForm.ShowDialog(this);
         }
 
         private void DisplayError(string errorText)
