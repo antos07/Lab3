@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.controlsPannel = new System.Windows.Forms.Panel();
             this.filesTreeViewsContainer = new System.Windows.Forms.SplitContainer();
             this.leftFilesTreeViewContainer = new System.Windows.Forms.SplitContainer();
             this.leftFoldersTreeView = new System.Windows.Forms.TreeView();
             this.leftFilesList = new System.Windows.Forms.ListBox();
             this.leftFilesTreeViewControlsPannel = new System.Windows.Forms.Panel();
             this.leftFileInfoButton = new System.Windows.Forms.Button();
+            this.leftSearchButton = new System.Windows.Forms.Button();
             this.leftFolderInfoButton = new System.Windows.Forms.Button();
             this.leftFilesTypeSelectorLabel = new System.Windows.Forms.Label();
             this.leftFilesTypeSelector = new System.Windows.Forms.ComboBox();
@@ -47,6 +47,15 @@
             this.rightFilesTypeSelectorLabel = new System.Windows.Forms.Label();
             this.rightFilesTypeSelector = new System.Windows.Forms.ComboBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.rightSearchButton = new System.Windows.Forms.Button();
+            this.leftCreateFileButton = new System.Windows.Forms.Button();
+            this.leftCreateFolderButton = new System.Windows.Forms.Button();
+            this.rightCreateFolderButton = new System.Windows.Forms.Button();
+            this.rightCreateFileButton = new System.Windows.Forms.Button();
+            this.leftOpenEdittorButton = new System.Windows.Forms.Button();
+            this.rightOpenEditorButton = new System.Windows.Forms.Button();
+            this.leftMergeFilesButton = new System.Windows.Forms.Button();
+            this.rightMergeFilesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.filesTreeViewsContainer)).BeginInit();
             this.filesTreeViewsContainer.Panel1.SuspendLayout();
             this.filesTreeViewsContainer.Panel2.SuspendLayout();
@@ -62,14 +71,6 @@
             this.rightFilesTreeViewContainer.SuspendLayout();
             this.rightFilesTreeViewControlsPannel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // controlsPannel
-            // 
-            this.controlsPannel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.controlsPannel.Location = new System.Drawing.Point(0, 924);
-            this.controlsPannel.Name = "controlsPannel";
-            this.controlsPannel.Size = new System.Drawing.Size(2384, 210);
-            this.controlsPannel.TabIndex = 0;
             // 
             // filesTreeViewsContainer
             // 
@@ -87,7 +88,7 @@
             // 
             this.filesTreeViewsContainer.Panel2.Controls.Add(this.rightFilesTreeViewContainer);
             this.filesTreeViewsContainer.Panel2.Controls.Add(this.rightFilesTreeViewControlsPannel);
-            this.filesTreeViewsContainer.Size = new System.Drawing.Size(2384, 900);
+            this.filesTreeViewsContainer.Size = new System.Drawing.Size(2384, 1110);
             this.filesTreeViewsContainer.SplitterDistance = 1192;
             this.filesTreeViewsContainer.TabIndex = 1;
             // 
@@ -105,7 +106,7 @@
             // leftFilesTreeViewContainer.Panel2
             // 
             this.leftFilesTreeViewContainer.Panel2.Controls.Add(this.leftFilesList);
-            this.leftFilesTreeViewContainer.Size = new System.Drawing.Size(1192, 815);
+            this.leftFilesTreeViewContainer.Size = new System.Drawing.Size(1192, 876);
             this.leftFilesTreeViewContainer.SplitterDistance = 449;
             this.leftFilesTreeViewContainer.TabIndex = 1;
             // 
@@ -116,7 +117,7 @@
             this.leftFoldersTreeView.HideSelection = false;
             this.leftFoldersTreeView.Location = new System.Drawing.Point(0, 0);
             this.leftFoldersTreeView.Name = "leftFoldersTreeView";
-            this.leftFoldersTreeView.Size = new System.Drawing.Size(449, 815);
+            this.leftFoldersTreeView.Size = new System.Drawing.Size(449, 876);
             this.leftFoldersTreeView.TabIndex = 0;
             this.leftFoldersTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.leftFoldersTreeView_AfterSelect);
             // 
@@ -128,7 +129,7 @@
             this.leftFilesList.ItemHeight = 41;
             this.leftFilesList.Location = new System.Drawing.Point(0, 0);
             this.leftFilesList.Name = "leftFilesList";
-            this.leftFilesList.Size = new System.Drawing.Size(739, 815);
+            this.leftFilesList.Size = new System.Drawing.Size(739, 876);
             this.leftFilesList.TabIndex = 0;
             this.leftFilesList.SelectedIndexChanged += new System.EventHandler(this.leftFilesList_SelectedIndexChanged);
             // 
@@ -136,19 +137,22 @@
             // 
             this.leftFilesTreeViewControlsPannel.BackColor = System.Drawing.SystemColors.Control;
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFileInfoButton);
+            this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftCreateFolderButton);
+            this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftCreateFileButton);
+            this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftOpenEdittorButton);
+            this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftMergeFilesButton);
+            this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftSearchButton);
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFolderInfoButton);
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFilesTypeSelectorLabel);
             this.leftFilesTreeViewControlsPannel.Controls.Add(this.leftFilesTypeSelector);
             this.leftFilesTreeViewControlsPannel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.leftFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 815);
+            this.leftFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 876);
             this.leftFilesTreeViewControlsPannel.Name = "leftFilesTreeViewControlsPannel";
-            this.leftFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1192, 85);
+            this.leftFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1192, 234);
             this.leftFilesTreeViewControlsPannel.TabIndex = 0;
             // 
             // leftFileInfoButton
             // 
-            this.leftFileInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.leftFileInfoButton.Location = new System.Drawing.Point(886, 17);
             this.leftFileInfoButton.Name = "leftFileInfoButton";
             this.leftFileInfoButton.Size = new System.Drawing.Size(280, 49);
@@ -157,10 +161,17 @@
             this.leftFileInfoButton.UseVisualStyleBackColor = true;
             this.leftFileInfoButton.Click += new System.EventHandler(this.leftFileInfoButton_Click);
             // 
+            // leftSearchButton
+            // 
+            this.leftSearchButton.Location = new System.Drawing.Point(227, 166);
+            this.leftSearchButton.Name = "leftSearchButton";
+            this.leftSearchButton.Size = new System.Drawing.Size(325, 49);
+            this.leftSearchButton.TabIndex = 2;
+            this.leftSearchButton.Text = "Відкрити пошук";
+            this.leftSearchButton.UseVisualStyleBackColor = true;
+            // 
             // leftFolderInfoButton
             // 
-            this.leftFolderInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.leftFolderInfoButton.Location = new System.Drawing.Point(576, 17);
             this.leftFolderInfoButton.Name = "leftFolderInfoButton";
             this.leftFolderInfoButton.Size = new System.Drawing.Size(280, 49);
@@ -180,8 +191,6 @@
             // 
             // leftFilesTypeSelector
             // 
-            this.leftFilesTypeSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.leftFilesTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.leftFilesTypeSelector.Items.AddRange(new object[] {
             "Текстові файли (*.txt)",
@@ -207,7 +216,7 @@
             // rightFilesTreeViewContainer.Panel2
             // 
             this.rightFilesTreeViewContainer.Panel2.Controls.Add(this.rightFilesList);
-            this.rightFilesTreeViewContainer.Size = new System.Drawing.Size(1188, 815);
+            this.rightFilesTreeViewContainer.Size = new System.Drawing.Size(1188, 876);
             this.rightFilesTreeViewContainer.SplitterDistance = 450;
             this.rightFilesTreeViewContainer.TabIndex = 1;
             // 
@@ -218,7 +227,7 @@
             this.rightFoldersTreeView.HideSelection = false;
             this.rightFoldersTreeView.Location = new System.Drawing.Point(0, 0);
             this.rightFoldersTreeView.Name = "rightFoldersTreeView";
-            this.rightFoldersTreeView.Size = new System.Drawing.Size(450, 815);
+            this.rightFoldersTreeView.Size = new System.Drawing.Size(450, 876);
             this.rightFoldersTreeView.TabIndex = 0;
             this.rightFoldersTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.rightFoldersTreeView_AfterSelect);
             // 
@@ -230,26 +239,29 @@
             this.rightFilesList.ItemHeight = 41;
             this.rightFilesList.Location = new System.Drawing.Point(0, 0);
             this.rightFilesList.Name = "rightFilesList";
-            this.rightFilesList.Size = new System.Drawing.Size(734, 815);
+            this.rightFilesList.Size = new System.Drawing.Size(734, 876);
             this.rightFilesList.TabIndex = 0;
             this.rightFilesList.SelectedIndexChanged += new System.EventHandler(this.rightFilesList_SelectedIndexChanged);
             // 
             // rightFilesTreeViewControlsPannel
             // 
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFileInfoButton);
+            this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightCreateFolderButton);
+            this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightCreateFileButton);
+            this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightOpenEditorButton);
+            this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightMergeFilesButton);
+            this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightSearchButton);
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFolderInfoButton);
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFilesTypeSelectorLabel);
             this.rightFilesTreeViewControlsPannel.Controls.Add(this.rightFilesTypeSelector);
             this.rightFilesTreeViewControlsPannel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rightFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 815);
+            this.rightFilesTreeViewControlsPannel.Location = new System.Drawing.Point(0, 876);
             this.rightFilesTreeViewControlsPannel.Name = "rightFilesTreeViewControlsPannel";
-            this.rightFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1188, 85);
+            this.rightFilesTreeViewControlsPannel.Size = new System.Drawing.Size(1188, 234);
             this.rightFilesTreeViewControlsPannel.TabIndex = 0;
             // 
             // rightFileInfoButton
             // 
-            this.rightFileInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.rightFileInfoButton.Location = new System.Drawing.Point(880, 14);
             this.rightFileInfoButton.Name = "rightFileInfoButton";
             this.rightFileInfoButton.Size = new System.Drawing.Size(280, 49);
@@ -260,8 +272,6 @@
             // 
             // rightFolderInfoButton
             // 
-            this.rightFolderInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.rightFolderInfoButton.Location = new System.Drawing.Point(570, 14);
             this.rightFolderInfoButton.Name = "rightFolderInfoButton";
             this.rightFolderInfoButton.Size = new System.Drawing.Size(280, 49);
@@ -281,8 +291,6 @@
             // 
             // rightFilesTypeSelector
             // 
-            this.rightFilesTypeSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.rightFilesTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rightFilesTypeSelector.Items.AddRange(new object[] {
             "Текстові файли (*.txt)",
@@ -303,13 +311,93 @@
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip1";
             // 
+            // rightSearchButton
+            // 
+            this.rightSearchButton.Location = new System.Drawing.Point(218, 166);
+            this.rightSearchButton.Name = "rightSearchButton";
+            this.rightSearchButton.Size = new System.Drawing.Size(325, 49);
+            this.rightSearchButton.TabIndex = 2;
+            this.rightSearchButton.Text = "Відкрити пошук";
+            this.rightSearchButton.UseVisualStyleBackColor = true;
+            // 
+            // leftCreateFileButton
+            // 
+            this.leftCreateFileButton.Location = new System.Drawing.Point(886, 91);
+            this.leftCreateFileButton.Name = "leftCreateFileButton";
+            this.leftCreateFileButton.Size = new System.Drawing.Size(280, 49);
+            this.leftCreateFileButton.TabIndex = 2;
+            this.leftCreateFileButton.Text = "Створити файл";
+            this.leftCreateFileButton.UseVisualStyleBackColor = true;
+            // 
+            // leftCreateFolderButton
+            // 
+            this.leftCreateFolderButton.Location = new System.Drawing.Point(576, 91);
+            this.leftCreateFolderButton.Name = "leftCreateFolderButton";
+            this.leftCreateFolderButton.Size = new System.Drawing.Size(280, 49);
+            this.leftCreateFolderButton.TabIndex = 2;
+            this.leftCreateFolderButton.Text = "Створити папку";
+            this.leftCreateFolderButton.UseVisualStyleBackColor = true;
+            // 
+            // rightCreateFolderButton
+            // 
+            this.rightCreateFolderButton.Location = new System.Drawing.Point(570, 91);
+            this.rightCreateFolderButton.Name = "rightCreateFolderButton";
+            this.rightCreateFolderButton.Size = new System.Drawing.Size(280, 49);
+            this.rightCreateFolderButton.TabIndex = 2;
+            this.rightCreateFolderButton.Text = "Створити папку";
+            this.rightCreateFolderButton.UseVisualStyleBackColor = true;
+            // 
+            // rightCreateFileButton
+            // 
+            this.rightCreateFileButton.Location = new System.Drawing.Point(880, 91);
+            this.rightCreateFileButton.Name = "rightCreateFileButton";
+            this.rightCreateFileButton.Size = new System.Drawing.Size(280, 49);
+            this.rightCreateFileButton.TabIndex = 2;
+            this.rightCreateFileButton.Text = "Створити файл";
+            this.rightCreateFileButton.UseVisualStyleBackColor = true;
+            // 
+            // leftOpenEdittorButton
+            // 
+            this.leftOpenEdittorButton.Location = new System.Drawing.Point(227, 91);
+            this.leftOpenEdittorButton.Name = "leftOpenEdittorButton";
+            this.leftOpenEdittorButton.Size = new System.Drawing.Size(325, 49);
+            this.leftOpenEdittorButton.TabIndex = 2;
+            this.leftOpenEdittorButton.Text = "Відкрити редактор";
+            this.leftOpenEdittorButton.UseVisualStyleBackColor = true;
+            // 
+            // rightOpenEditorButton
+            // 
+            this.rightOpenEditorButton.Location = new System.Drawing.Point(218, 91);
+            this.rightOpenEditorButton.Name = "rightOpenEditorButton";
+            this.rightOpenEditorButton.Size = new System.Drawing.Size(325, 49);
+            this.rightOpenEditorButton.TabIndex = 2;
+            this.rightOpenEditorButton.Text = "Відкрити редактор";
+            this.rightOpenEditorButton.UseVisualStyleBackColor = true;
+            // 
+            // leftMergeFilesButton
+            // 
+            this.leftMergeFilesButton.Location = new System.Drawing.Point(576, 166);
+            this.leftMergeFilesButton.Name = "leftMergeFilesButton";
+            this.leftMergeFilesButton.Size = new System.Drawing.Size(590, 49);
+            this.leftMergeFilesButton.TabIndex = 2;
+            this.leftMergeFilesButton.Text = "Злити з правим файлом";
+            this.leftMergeFilesButton.UseVisualStyleBackColor = true;
+            // 
+            // rightMergeFilesButton
+            // 
+            this.rightMergeFilesButton.Location = new System.Drawing.Point(570, 166);
+            this.rightMergeFilesButton.Name = "rightMergeFilesButton";
+            this.rightMergeFilesButton.Size = new System.Drawing.Size(590, 49);
+            this.rightMergeFilesButton.TabIndex = 2;
+            this.rightMergeFilesButton.Text = "Злити з лівим файлом";
+            this.rightMergeFilesButton.UseVisualStyleBackColor = true;
+            // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2384, 1134);
             this.Controls.Add(this.filesTreeViewsContainer);
-            this.Controls.Add(this.controlsPannel);
             this.Controls.Add(this.menuStrip);
             this.Name = "FileManagerForm";
             this.Text = "Файловий менеджер";
@@ -336,8 +424,6 @@
         }
 
         #endregion
-
-        private Panel controlsPannel;
         private SplitContainer filesTreeViewsContainer;
         private MenuStrip menuStrip;
         private Panel leftFilesTreeViewControlsPannel;
@@ -356,5 +442,15 @@
         private Button leftFolderInfoButton;
         private Button rightFileInfoButton;
         private Button rightFolderInfoButton;
+        private Button leftSearchButton;
+        private Button rightSearchButton;
+        private Button leftCreateFolderButton;
+        private Button leftCreateFileButton;
+        private Button leftOpenEdittorButton;
+        private Button leftMergeFilesButton;
+        private Button rightCreateFolderButton;
+        private Button rightCreateFileButton;
+        private Button rightOpenEditorButton;
+        private Button rightMergeFilesButton;
     }
 }
