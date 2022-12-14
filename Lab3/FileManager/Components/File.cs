@@ -59,7 +59,7 @@ namespace Lab3.FileManager.Components
 
         static private bool IsAcceptableFolderName(string folderName)
         {
-            return !(folderName.Substring(0, folderName.Length - 1).Contains('\\') || folderName.Contains('/'));
+            return !(folderName.Contains('\\') || folderName.Contains('/'));
         }
     }
 }
