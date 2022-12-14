@@ -1,5 +1,5 @@
-using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
+using Lab3.FileManager.Components;
+using File = Lab3.FileManager.Components.File;
 
 namespace Lab3.FileManager
 {
@@ -28,10 +28,10 @@ namespace Lab3.FileManager
         {
             foldersTreeView.Nodes.Clear();
 
-            string[] allDrives = FileSystem.ListDrives();
-            foreach (string drive in allDrives)
+            Folder[] allDrives = FileSystem.ListDrives();
+            foreach (Folder drive in allDrives)
             {
-                TreeNode driveNode = foldersTreeView.Nodes.Add(drive);
+                TreeNode driveNode = foldersTreeView.Nodes.Add(drive.Name.TrimEnd('\\'));
                 AddSubfolders(driveNode);
             }
 
@@ -45,10 +45,11 @@ namespace Lab3.FileManager
         private void AddSubfolders(TreeNode folderNode)
         {
             folderNode.Nodes.Clear();
-            string[] subfolders = FileSystem.ListDirectories(folderNode.FullPath);
-            foreach (string subfolder in subfolders)
+
+            var folder = new Folder(folderNode.FullPath);
+            foreach (Folder subfolder in folder.Subfolders)
             {
-                folderNode.Nodes.Add(subfolder);
+                folderNode.Nodes.Add(subfolder.Name);
             }
         }
 
@@ -58,9 +59,16 @@ namespace Lab3.FileManager
             if (folderNode == null)
                 return;
 
-            AddSubfolders(folderNode);
-            foreach (TreeNode subfolderNode in folderNode.Nodes)
-                AddSubfolders(subfolderNode);
+            try
+            {
+                AddSubfolders(folderNode);
+                foreach (TreeNode subfolderNode in folderNode.Nodes)
+                    AddSubfolders(subfolderNode);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                LoadFoldersTreeView(folderNode.TreeView);
+            }
         }
 
         private void leftFoldersTreeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -94,15 +102,15 @@ namespace Lab3.FileManager
             }
         }
 
-        private void DisplayFiles(TreeNode folder, ListBox output, ComboBox filesTypeSelector)
+        private void DisplayFiles(TreeNode folderNode, ListBox output, ComboBox filesTypeSelector)
         {
             output.Items.Clear();
 
-            FileSystem.FileType? filesType = GetSelectedFileType(filesTypeSelector);
-            string[] files = FileSystem.ListFiles(folder.FullPath, filesType);
-            foreach (string file in files)
+            var folder = new Folder(folderNode.FullPath);
+            string pattern = GetSelectedFileTypePattern(filesTypeSelector);
+            foreach (File file in folder.SearchFiles(pattern))
             {
-                output.Items.Add(file);
+                output.Items.Add(file.Name);
             }
         }
 
@@ -111,27 +119,41 @@ namespace Lab3.FileManager
             selector.SelectedIndex = 2;
         }
 
-        private FileSystem.FileType? GetSelectedFileType(ComboBox selector)
+        private string GetSelectedFileTypePattern(ComboBox selector)
         {
             switch (selector.SelectedIndex)
             {
                 case 0:
-                    return FileSystem.FileType.TXT;
+                    return "*.txt";
                 case 1:
-                    return FileSystem.FileType.HTML;
+                    return "*.html";
                 default:
-                    return null;
+                    return "*";
             }
         }
 
         private void leftFilesTypeSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DisplayFiles(leftFoldersTreeView.SelectedNode, leftFilesList, leftFilesTypeSelector);
+            try
+            {
+                DisplayFiles(leftFoldersTreeView.SelectedNode, leftFilesList, leftFilesTypeSelector);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                LoadFoldersTreeView(leftFoldersTreeView);
+            }
         }
 
         private void rightFilesTypeSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DisplayFiles(rightFoldersTreeView.SelectedNode, rightFilesList, rightFilesTypeSelector);
+            try
+            {
+                DisplayFiles(rightFoldersTreeView.SelectedNode, rightFilesList, rightFilesTypeSelector);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                LoadFoldersTreeView(rightFoldersTreeView);
+            }
         }
 
         private void rightFilesList_SelectedIndexChanged(object sender, EventArgs e)
@@ -173,10 +195,10 @@ namespace Lab3.FileManager
         {
             string folderPath = foldersTreeView.SelectedNode.FullPath;
 
-            FolderInfo folderInfo;
+            Folder folder;
             try
             {
-                folderInfo = FileSystem.GetFolderInfo(folderPath);
+                folder = new Folder(folderPath);
             }
             catch (DirectoryNotFoundException)
             {
@@ -190,7 +212,7 @@ namespace Lab3.FileManager
                 return;
             }
 
-            using var folderInfoForm = new FolderInfoForm(folderInfo);
+            using var folderInfoForm = new FolderInfoForm(folder);
             folderInfoForm.ShowDialog(this);
 
             UpdateChangedTree(foldersTreeView);
@@ -199,7 +221,10 @@ namespace Lab3.FileManager
         private void UpdateChangedTree(TreeView foldersTreeView)
         {
             string expectedFolderName = foldersTreeView.SelectedNode.Text;
-            TreeNode parent = foldersTreeView.SelectedNode.Parent;
+            TreeNode? parent = foldersTreeView.SelectedNode.Parent;
+            if (parent == null)
+                return;
+
             AddSubfolders(parent);
 
             TreeNode? result = null;

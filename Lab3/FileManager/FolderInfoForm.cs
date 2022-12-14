@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab3.FileManager.Components;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,13 @@ namespace Lab3.FileManager
 {
     public partial class FolderInfoForm : Form
     {
-        FolderInfo _folderInfo;
+        Folder _folder;
 
-        public FolderInfoForm(FolderInfo folderInfo)
+        public FolderInfoForm(Folder folder)
         {
             InitializeComponent();
 
-            _folderInfo = folderInfo;
+            _folder = folder;
 
             folderName.LostFocus += folderName_LostFocus;
         }
@@ -35,22 +36,9 @@ namespace Lab3.FileManager
 
         private void LoadFolderInfo()
         {
-            folderName.Text = _folderInfo.Name;
-            folderPath.Text = _folderInfo.Path;
-            folderCreationTime.Text = _folderInfo.CreationTime.ToString();
-        }
-
-        private bool IsAcceptableFolderName(string folderName)
-        {
-            return !(folderName.Substring(0, folderName.Length - 1).Contains('\\') || folderName.Contains('/'));
-        }
-
-        private string MakeNewPath(string oldPath, string newName)
-        {
-            string? directory = FileSystem.GetParentDirectory(oldPath);
-            if (directory == null)
-                return newName;
-            return Path.Combine(directory, newName);
+            folderName.Text = _folder.Name;
+            folderPath.Text = _folder.Path;
+            folderCreationTime.Text = _folder.CreationTime.ToString();
         }
 
         private void DisplayError(string errorText)
@@ -60,7 +48,7 @@ namespace Lab3.FileManager
 
         private void RenameFolder(string newName)
         {
-            if (newName == _folderInfo.Name)
+            if (newName == _folder.Name)
                 return;
 
             if (MessageBox.Show("Ви точно хочете перейменувати папку?", Text, MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -68,19 +56,9 @@ namespace Lab3.FileManager
                 LoadFolderInfo();
                 return;
             }
-
-            if (!IsAcceptableFolderName(newName))
-            {
-                DisplayError("Некорректне ім'я.");
-                LoadFolderInfo();
-                return;
-            }
-
-            string oldPath = _folderInfo.Path;
-            string newPath = MakeNewPath(oldPath, newName);
             try
             {
-                FileSystem.MoveFolder(oldPath, newPath);
+                _folder.Name = newName;
             }
             catch (UnauthorizedAccessException)
             {
@@ -95,7 +73,6 @@ namespace Lab3.FileManager
                 return;
             }
 
-            _folderInfo = FileSystem.GetFolderInfo(newPath);
             LoadFolderInfo();
         }
 
@@ -107,7 +84,7 @@ namespace Lab3.FileManager
             }
             try
             {
-                FileSystem.DeleteFolder(_folderInfo.Path);
+                _folder.Delete();
             }
             catch (UnauthorizedAccessException)
             {
