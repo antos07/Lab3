@@ -39,7 +39,7 @@ namespace Lab3.FileManager
             {
                 foldersTreeView.SelectedNode = foldersTreeView.Nodes[0];
             }
-            catch (IndexOutOfRangeException) {}
+            catch (IndexOutOfRangeException) { }
         }
 
         private void AddSubfolders(TreeNode folderNode)
@@ -84,7 +84,7 @@ namespace Lab3.FileManager
             {
                 LoadFoldersTreeView(leftFoldersTreeView);
             }
-            
+
         }
 
         private void rightFoldersTreeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -297,6 +297,95 @@ namespace Lab3.FileManager
                 DisplayFiles(foldersTreeView.SelectedNode, filesListView, filesTypeSelector);
             }
             catch (DirectoryNotFoundException)
+            {
+                LoadFoldersTreeView(foldersTreeView);
+            }
+        }
+
+        private void leftCreateFolderButton_Click(object sender, EventArgs e)
+        {
+            CreateFolder(leftFoldersTreeView);
+        }
+
+        private void rightCreateFolderButton_Click(object sender, EventArgs e)
+        {
+            CreateFolder(rightFoldersTreeView);
+        }
+
+        private void CreateFolder(TreeView foldersTreeView)
+        {
+            string path = foldersTreeView.SelectedNode.FullPath;
+            Folder folder;
+            try
+            {
+                folder = new Folder(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                DisplayError("Папка була видалена або переміщена.");
+                LoadFoldersTreeView(foldersTreeView);
+                return;
+            }
+
+            using var prompt = new FilenamePrompt();
+            prompt.ShowDialog(this);
+            if (prompt.Filename == null)
+                return;
+
+            try
+            {
+                folder.CreateSubfolder(prompt.Filename);
+            }
+            catch
+            {
+                DisplayError("Не вдалося створити папку");
+            }
+        }
+
+        private void leftCreateFileButton_Click(object sender, EventArgs e)
+        {
+            CreateFile(leftFoldersTreeView, leftFilesList, leftFilesTypeSelector);
+        }
+
+        private void rightCreateFileButton_Click(object sender, EventArgs e)
+        {
+            CreateFile(rightFoldersTreeView, rightFilesList, rightFilesTypeSelector);  
+        }
+
+        private void CreateFile(TreeView foldersTreeView, ListBox filesListView, ComboBox filesTypeSelector)
+        {
+            string path = foldersTreeView.SelectedNode.FullPath;
+            Folder folder;
+            try
+            {
+                folder = new Folder(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                DisplayError("Папка була видалена або переміщена.");
+                LoadFoldersTreeView(foldersTreeView);
+                return;
+            }
+
+            using var prompt = new FilenamePrompt();
+            prompt.ShowDialog(this);
+            if (prompt.Filename == null)
+                return;
+
+            try
+            {
+                folder.CreateFile(prompt.Filename);
+            }
+            catch
+            {
+                DisplayError("Не вдалося створити файл.");
+            }
+
+            try
+            {
+                DisplayFiles(foldersTreeView.SelectedNode, filesListView, filesTypeSelector);
+            }
+            catch
             {
                 LoadFoldersTreeView(foldersTreeView);
             }

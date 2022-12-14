@@ -65,6 +65,24 @@ namespace Lab3.FileManager.Components
                 yield return new File(path);
         }
 
+        public File CreateFile(string filename)
+        {
+            string path = System.IO.Path.Combine(Path, filename);
+
+            using (System.IO.File.Create(path)) { }
+
+            return new File(path);
+        }
+
+        public Folder CreateSubfolder(string foldername)
+        {
+            string path = System.IO.Path.Combine(Path, foldername);
+
+            Directory.CreateDirectory(path);
+
+            return new Folder(path);
+        }
+
         public override string ToString()
         {
             return Path;

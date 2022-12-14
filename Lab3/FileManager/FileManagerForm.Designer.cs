@@ -34,6 +34,10 @@
             this.leftFilesList = new System.Windows.Forms.ListBox();
             this.leftFilesTreeViewControlsPannel = new System.Windows.Forms.Panel();
             this.leftFileInfoButton = new System.Windows.Forms.Button();
+            this.leftCreateFolderButton = new System.Windows.Forms.Button();
+            this.leftCreateFileButton = new System.Windows.Forms.Button();
+            this.leftOpenEdittorButton = new System.Windows.Forms.Button();
+            this.leftMergeFilesButton = new System.Windows.Forms.Button();
             this.leftSearchButton = new System.Windows.Forms.Button();
             this.leftFolderInfoButton = new System.Windows.Forms.Button();
             this.leftFilesTypeSelectorLabel = new System.Windows.Forms.Label();
@@ -43,19 +47,15 @@
             this.rightFilesList = new System.Windows.Forms.ListBox();
             this.rightFilesTreeViewControlsPannel = new System.Windows.Forms.Panel();
             this.rightFileInfoButton = new System.Windows.Forms.Button();
+            this.rightCreateFolderButton = new System.Windows.Forms.Button();
+            this.rightCreateFileButton = new System.Windows.Forms.Button();
+            this.rightOpenEditorButton = new System.Windows.Forms.Button();
+            this.rightMergeFilesButton = new System.Windows.Forms.Button();
+            this.rightSearchButton = new System.Windows.Forms.Button();
             this.rightFolderInfoButton = new System.Windows.Forms.Button();
             this.rightFilesTypeSelectorLabel = new System.Windows.Forms.Label();
             this.rightFilesTypeSelector = new System.Windows.Forms.ComboBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.rightSearchButton = new System.Windows.Forms.Button();
-            this.leftCreateFileButton = new System.Windows.Forms.Button();
-            this.leftCreateFolderButton = new System.Windows.Forms.Button();
-            this.rightCreateFolderButton = new System.Windows.Forms.Button();
-            this.rightCreateFileButton = new System.Windows.Forms.Button();
-            this.leftOpenEdittorButton = new System.Windows.Forms.Button();
-            this.rightOpenEditorButton = new System.Windows.Forms.Button();
-            this.leftMergeFilesButton = new System.Windows.Forms.Button();
-            this.rightMergeFilesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.filesTreeViewsContainer)).BeginInit();
             this.filesTreeViewsContainer.Panel1.SuspendLayout();
             this.filesTreeViewsContainer.Panel2.SuspendLayout();
@@ -160,6 +160,44 @@
             this.leftFileInfoButton.Text = "Властивості файлу";
             this.leftFileInfoButton.UseVisualStyleBackColor = true;
             this.leftFileInfoButton.Click += new System.EventHandler(this.leftFileInfoButton_Click);
+            // 
+            // leftCreateFolderButton
+            // 
+            this.leftCreateFolderButton.Location = new System.Drawing.Point(576, 91);
+            this.leftCreateFolderButton.Name = "leftCreateFolderButton";
+            this.leftCreateFolderButton.Size = new System.Drawing.Size(280, 49);
+            this.leftCreateFolderButton.TabIndex = 2;
+            this.leftCreateFolderButton.Text = "Створити папку";
+            this.leftCreateFolderButton.UseVisualStyleBackColor = true;
+            this.leftCreateFolderButton.Click += new System.EventHandler(this.leftCreateFolderButton_Click);
+            // 
+            // leftCreateFileButton
+            // 
+            this.leftCreateFileButton.Location = new System.Drawing.Point(886, 91);
+            this.leftCreateFileButton.Name = "leftCreateFileButton";
+            this.leftCreateFileButton.Size = new System.Drawing.Size(280, 49);
+            this.leftCreateFileButton.TabIndex = 2;
+            this.leftCreateFileButton.Text = "Створити файл";
+            this.leftCreateFileButton.UseVisualStyleBackColor = true;
+            this.leftCreateFileButton.Click += new System.EventHandler(this.leftCreateFileButton_Click);
+            // 
+            // leftOpenEdittorButton
+            // 
+            this.leftOpenEdittorButton.Location = new System.Drawing.Point(227, 91);
+            this.leftOpenEdittorButton.Name = "leftOpenEdittorButton";
+            this.leftOpenEdittorButton.Size = new System.Drawing.Size(325, 49);
+            this.leftOpenEdittorButton.TabIndex = 2;
+            this.leftOpenEdittorButton.Text = "Відкрити редактор";
+            this.leftOpenEdittorButton.UseVisualStyleBackColor = true;
+            // 
+            // leftMergeFilesButton
+            // 
+            this.leftMergeFilesButton.Location = new System.Drawing.Point(576, 166);
+            this.leftMergeFilesButton.Name = "leftMergeFilesButton";
+            this.leftMergeFilesButton.Size = new System.Drawing.Size(590, 49);
+            this.leftMergeFilesButton.TabIndex = 2;
+            this.leftMergeFilesButton.Text = "Злити з правим файлом";
+            this.leftMergeFilesButton.UseVisualStyleBackColor = true;
             // 
             // leftSearchButton
             // 
@@ -270,6 +308,53 @@
             this.rightFileInfoButton.UseVisualStyleBackColor = true;
             this.rightFileInfoButton.Click += new System.EventHandler(this.rightFileInfoButton_Click);
             // 
+            // rightCreateFolderButton
+            // 
+            this.rightCreateFolderButton.Location = new System.Drawing.Point(570, 91);
+            this.rightCreateFolderButton.Name = "rightCreateFolderButton";
+            this.rightCreateFolderButton.Size = new System.Drawing.Size(280, 49);
+            this.rightCreateFolderButton.TabIndex = 2;
+            this.rightCreateFolderButton.Text = "Створити папку";
+            this.rightCreateFolderButton.UseVisualStyleBackColor = true;
+            this.rightCreateFolderButton.Click += new System.EventHandler(this.rightCreateFolderButton_Click);
+            // 
+            // rightCreateFileButton
+            // 
+            this.rightCreateFileButton.Location = new System.Drawing.Point(880, 91);
+            this.rightCreateFileButton.Name = "rightCreateFileButton";
+            this.rightCreateFileButton.Size = new System.Drawing.Size(280, 49);
+            this.rightCreateFileButton.TabIndex = 2;
+            this.rightCreateFileButton.Text = "Створити файл";
+            this.rightCreateFileButton.UseVisualStyleBackColor = true;
+            this.rightCreateFileButton.Click += new System.EventHandler(this.rightCreateFileButton_Click);
+            // 
+            // rightOpenEditorButton
+            // 
+            this.rightOpenEditorButton.Location = new System.Drawing.Point(218, 91);
+            this.rightOpenEditorButton.Name = "rightOpenEditorButton";
+            this.rightOpenEditorButton.Size = new System.Drawing.Size(325, 49);
+            this.rightOpenEditorButton.TabIndex = 2;
+            this.rightOpenEditorButton.Text = "Відкрити редактор";
+            this.rightOpenEditorButton.UseVisualStyleBackColor = true;
+            // 
+            // rightMergeFilesButton
+            // 
+            this.rightMergeFilesButton.Location = new System.Drawing.Point(570, 166);
+            this.rightMergeFilesButton.Name = "rightMergeFilesButton";
+            this.rightMergeFilesButton.Size = new System.Drawing.Size(590, 49);
+            this.rightMergeFilesButton.TabIndex = 2;
+            this.rightMergeFilesButton.Text = "Злити з лівим файлом";
+            this.rightMergeFilesButton.UseVisualStyleBackColor = true;
+            // 
+            // rightSearchButton
+            // 
+            this.rightSearchButton.Location = new System.Drawing.Point(218, 166);
+            this.rightSearchButton.Name = "rightSearchButton";
+            this.rightSearchButton.Size = new System.Drawing.Size(325, 49);
+            this.rightSearchButton.TabIndex = 2;
+            this.rightSearchButton.Text = "Відкрити пошук";
+            this.rightSearchButton.UseVisualStyleBackColor = true;
+            // 
             // rightFolderInfoButton
             // 
             this.rightFolderInfoButton.Location = new System.Drawing.Point(570, 14);
@@ -310,87 +395,6 @@
             this.menuStrip.Size = new System.Drawing.Size(2384, 24);
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip1";
-            // 
-            // rightSearchButton
-            // 
-            this.rightSearchButton.Location = new System.Drawing.Point(218, 166);
-            this.rightSearchButton.Name = "rightSearchButton";
-            this.rightSearchButton.Size = new System.Drawing.Size(325, 49);
-            this.rightSearchButton.TabIndex = 2;
-            this.rightSearchButton.Text = "Відкрити пошук";
-            this.rightSearchButton.UseVisualStyleBackColor = true;
-            // 
-            // leftCreateFileButton
-            // 
-            this.leftCreateFileButton.Location = new System.Drawing.Point(886, 91);
-            this.leftCreateFileButton.Name = "leftCreateFileButton";
-            this.leftCreateFileButton.Size = new System.Drawing.Size(280, 49);
-            this.leftCreateFileButton.TabIndex = 2;
-            this.leftCreateFileButton.Text = "Створити файл";
-            this.leftCreateFileButton.UseVisualStyleBackColor = true;
-            // 
-            // leftCreateFolderButton
-            // 
-            this.leftCreateFolderButton.Location = new System.Drawing.Point(576, 91);
-            this.leftCreateFolderButton.Name = "leftCreateFolderButton";
-            this.leftCreateFolderButton.Size = new System.Drawing.Size(280, 49);
-            this.leftCreateFolderButton.TabIndex = 2;
-            this.leftCreateFolderButton.Text = "Створити папку";
-            this.leftCreateFolderButton.UseVisualStyleBackColor = true;
-            // 
-            // rightCreateFolderButton
-            // 
-            this.rightCreateFolderButton.Location = new System.Drawing.Point(570, 91);
-            this.rightCreateFolderButton.Name = "rightCreateFolderButton";
-            this.rightCreateFolderButton.Size = new System.Drawing.Size(280, 49);
-            this.rightCreateFolderButton.TabIndex = 2;
-            this.rightCreateFolderButton.Text = "Створити папку";
-            this.rightCreateFolderButton.UseVisualStyleBackColor = true;
-            // 
-            // rightCreateFileButton
-            // 
-            this.rightCreateFileButton.Location = new System.Drawing.Point(880, 91);
-            this.rightCreateFileButton.Name = "rightCreateFileButton";
-            this.rightCreateFileButton.Size = new System.Drawing.Size(280, 49);
-            this.rightCreateFileButton.TabIndex = 2;
-            this.rightCreateFileButton.Text = "Створити файл";
-            this.rightCreateFileButton.UseVisualStyleBackColor = true;
-            // 
-            // leftOpenEdittorButton
-            // 
-            this.leftOpenEdittorButton.Location = new System.Drawing.Point(227, 91);
-            this.leftOpenEdittorButton.Name = "leftOpenEdittorButton";
-            this.leftOpenEdittorButton.Size = new System.Drawing.Size(325, 49);
-            this.leftOpenEdittorButton.TabIndex = 2;
-            this.leftOpenEdittorButton.Text = "Відкрити редактор";
-            this.leftOpenEdittorButton.UseVisualStyleBackColor = true;
-            // 
-            // rightOpenEditorButton
-            // 
-            this.rightOpenEditorButton.Location = new System.Drawing.Point(218, 91);
-            this.rightOpenEditorButton.Name = "rightOpenEditorButton";
-            this.rightOpenEditorButton.Size = new System.Drawing.Size(325, 49);
-            this.rightOpenEditorButton.TabIndex = 2;
-            this.rightOpenEditorButton.Text = "Відкрити редактор";
-            this.rightOpenEditorButton.UseVisualStyleBackColor = true;
-            // 
-            // leftMergeFilesButton
-            // 
-            this.leftMergeFilesButton.Location = new System.Drawing.Point(576, 166);
-            this.leftMergeFilesButton.Name = "leftMergeFilesButton";
-            this.leftMergeFilesButton.Size = new System.Drawing.Size(590, 49);
-            this.leftMergeFilesButton.TabIndex = 2;
-            this.leftMergeFilesButton.Text = "Злити з правим файлом";
-            this.leftMergeFilesButton.UseVisualStyleBackColor = true;
-            // 
-            // rightMergeFilesButton
-            // 
-            this.rightMergeFilesButton.Location = new System.Drawing.Point(570, 166);
-            this.rightMergeFilesButton.Name = "rightMergeFilesButton";
-            this.rightMergeFilesButton.Size = new System.Drawing.Size(590, 49);
-            this.rightMergeFilesButton.TabIndex = 2;
-            this.rightMergeFilesButton.Text = "Злити з лівим файлом";
-            this.rightMergeFilesButton.UseVisualStyleBackColor = true;
             // 
             // FileManagerForm
             // 
