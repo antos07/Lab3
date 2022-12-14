@@ -1,6 +1,6 @@
 ﻿namespace Lab3.FileManager
 {
-    partial class FolderInfoForm
+    partial class EntityInfoForm
     {
         /// <summary>
         /// Required designer variable.

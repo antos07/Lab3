@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace Lab3.FileManager
 {
-    public partial class FolderInfoForm : Form
+    public partial class EntityInfoForm : Form
     {
-        Folder _folder;
+        Entity _entity;
 
-        public FolderInfoForm(Folder folder)
+        public EntityInfoForm(Entity entity)
         {
             InitializeComponent();
 
-            _folder = folder;
+            _entity = entity;
 
             folderName.LostFocus += folderName_LostFocus;
         }
@@ -36,9 +36,9 @@ namespace Lab3.FileManager
 
         private void LoadFolderInfo()
         {
-            folderName.Text = _folder.Name;
-            folderPath.Text = _folder.Path;
-            folderCreationTime.Text = _folder.CreationTime.ToString();
+            folderName.Text = _entity.Name;
+            folderPath.Text = _entity.Path;
+            folderCreationTime.Text = _entity.CreationTime.ToString();
         }
 
         private void DisplayError(string errorText)
@@ -48,17 +48,17 @@ namespace Lab3.FileManager
 
         private void RenameFolder(string newName)
         {
-            if (newName == _folder.Name)
+            if (newName == _entity.Name)
                 return;
 
-            if (MessageBox.Show("Ви точно хочете перейменувати папку?", Text, MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("Ви точно хочете перейменувати?", Text, MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 LoadFolderInfo();
                 return;
             }
             try
             {
-                _folder.Name = newName;
+                _entity.Name = newName;
             }
             catch (UnauthorizedAccessException)
             {
@@ -68,7 +68,7 @@ namespace Lab3.FileManager
             }
             catch
             {
-                DisplayError("Не вдалося перейменувати папку.");
+                DisplayError("Не вдалося перейменувати.");
                 LoadFolderInfo();
                 return;
             }
@@ -78,13 +78,13 @@ namespace Lab3.FileManager
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Ви точно хочете видалити папку?", Text, MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("Ви точно хочете видалити?", Text, MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
             try
             {
-                _folder.Delete();
+                _entity.Delete();
             }
             catch (UnauthorizedAccessException)
             {
@@ -93,7 +93,7 @@ namespace Lab3.FileManager
             }
             catch
             {
-                DisplayError("Не вдалося видалити папку.");
+                DisplayError("Не вдалося видалити.");
                 return;
             }
 

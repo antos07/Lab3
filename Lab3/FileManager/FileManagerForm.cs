@@ -102,7 +102,7 @@ namespace Lab3.FileManager
             }
         }
 
-        private void DisplayFiles(TreeNode folderNode, ListBox output, ComboBox filesTypeSelector)
+        private void DisplayFiles(TreeNode folderNode, ListBox output, ComboBox? filesTypeSelector = null)
         {
             output.Items.Clear();
 
@@ -119,8 +119,11 @@ namespace Lab3.FileManager
             selector.SelectedIndex = 2;
         }
 
-        private string GetSelectedFileTypePattern(ComboBox selector)
+        private string GetSelectedFileTypePattern(ComboBox? selector)
         {
+            if (selector == null)
+                return "*";
+
             switch (selector.SelectedIndex)
             {
                 case 0:
@@ -212,7 +215,7 @@ namespace Lab3.FileManager
                 return;
             }
 
-            using var folderInfoForm = new FolderInfoForm(folder);
+            using var folderInfoForm = new EntityInfoForm(folder);
             folderInfoForm.ShowDialog(this);
 
             UpdateChangedTree(foldersTreeView);
@@ -241,6 +244,62 @@ namespace Lab3.FileManager
             else
                 foldersTreeView.SelectedNode = result;
             DisplayFiles(foldersTreeView.SelectedNode, leftFilesList, leftFilesTypeSelector);
+        }
+
+        private void leftFileInfoButton_Click(object sender, EventArgs e)
+        {
+            DisplaySelectedFileInfo(leftFoldersTreeView, leftFilesList, leftFilesTypeSelector);
+        }
+
+        private void rightFileInfoButton_Click(object sender, EventArgs e)
+        {
+            DisplaySelectedFileInfo(rightFoldersTreeView, rightFilesList, rightFilesTypeSelector);
+        }
+
+        private void DisplaySelectedFileInfo(TreeView foldersTreeView, ListBox filesListView, ComboBox filesTypeSelector)
+        {
+            if (filesListView.SelectedItem == null)
+            {
+                DisplayError("ќбер≥ть файл.");
+                return;
+            }
+
+            string folderPath = foldersTreeView.SelectedNode.FullPath;
+            string filePath = Path.Combine(folderPath, (string)filesListView.SelectedItem);
+
+            File file;
+            try
+            {
+                file = new File(filePath);
+            }
+            catch (FileNotFoundException)
+            {
+                DisplayError("‘айл не знайдено.");
+                ReloadFilesList(foldersTreeView, filesListView, filesTypeSelector);
+                return;
+            }
+            catch
+            {
+                DisplayError("ўось п≥шло не так.");
+                return;
+            }
+
+            using var fileInfoForm = new EntityInfoForm(file);
+            fileInfoForm.ShowDialog(this);
+
+            ReloadFilesList(foldersTreeView, filesListView, filesTypeSelector);
+        }
+
+        void ReloadFilesList(TreeView foldersTreeView, ListBox filesListView, ComboBox filesTypeSelector)
+        {
+            try
+            {
+                DisplayFiles(foldersTreeView.SelectedNode, filesListView, filesTypeSelector);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                LoadFoldersTreeView(foldersTreeView);
+            }
         }
 
         private void DisplayError(string errorText)

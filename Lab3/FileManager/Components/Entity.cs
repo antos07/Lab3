@@ -13,6 +13,8 @@ namespace Lab3.FileManager.Components
         public string Path { get; protected set; }
         public DateTime CreationTime { get; protected set; }
 
+        abstract public void Delete();
+
         protected string _name;
         
         abstract protected void SetName(string value);

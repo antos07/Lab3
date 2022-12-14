@@ -19,6 +19,11 @@ namespace Lab3.FileManager.Components
             CreationTime = fileInfo.CreationTime;
         }
 
+        public override void Delete()
+        {
+            System.IO.File.Delete(Path);
+        }
+
         public override string ToString()
         {
             return Path;
@@ -31,7 +36,30 @@ namespace Lab3.FileManager.Components
             if (_name == value)
                 return;
 
-            throw new NotImplementedException();
+            if (!IsAcceptableFolderName(value))
+                throw new ArgumentException("Invalid name");
+
+            string newPath = MakePathForRenamed(value);
+            Directory.Move(Path, newPath);
+            _name = value;
+        }
+        private Folder GetParent()
+        {
+            DirectoryInfo parentInfo = Directory.GetParent(Path);
+            return new Folder(parentInfo.FullName);
+        }
+
+        private string MakePathForRenamed(string newName)
+        {
+            Folder directory = GetParent();
+            if (directory == null)
+                return newName;
+            return System.IO.Path.Combine(directory.Path, newName);
+        }
+
+        static private bool IsAcceptableFolderName(string folderName)
+        {
+            return !(folderName.Substring(0, folderName.Length - 1).Contains('\\') || folderName.Contains('/'));
         }
     }
 }

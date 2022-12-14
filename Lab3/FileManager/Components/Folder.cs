@@ -45,7 +45,7 @@ namespace Lab3.FileManager.Components
                 return SearchFiles("*");
             } }
 
-        public void Delete()
+        public override void Delete()
         {
             Directory.Delete(Path, true);
         }

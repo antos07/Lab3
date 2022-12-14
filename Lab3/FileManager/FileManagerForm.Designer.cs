@@ -155,6 +155,7 @@
             this.leftFileInfoButton.TabIndex = 2;
             this.leftFileInfoButton.Text = "Властивості файлу";
             this.leftFileInfoButton.UseVisualStyleBackColor = true;
+            this.leftFileInfoButton.Click += new System.EventHandler(this.leftFileInfoButton_Click);
             // 
             // leftFolderInfoButton
             // 
@@ -255,6 +256,7 @@
             this.rightFileInfoButton.TabIndex = 2;
             this.rightFileInfoButton.Text = "Властивості файлу";
             this.rightFileInfoButton.UseVisualStyleBackColor = true;
+            this.rightFileInfoButton.Click += new System.EventHandler(this.rightFileInfoButton_Click);
             // 
             // rightFolderInfoButton
             // 
